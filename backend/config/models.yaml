@@ -1,0 +1,106 @@
+# ============================================
+# MODEL CONFIGURATIONS
+# ============================================
+
+# Base Model (Always Loaded)
+base_model:
+  name: "mistral-7b-instruct-v0.2.Q4_K_M.gguf"
+  display_name: "Mistral 7B Instruct v0.2 (Q4)"
+  description: "Fast, efficient base model for quick decisions and routing"
+  
+  # Download info
+  huggingface_repo: "TheBloke/Mistral-7B-Instruct-v0.2-GGUF"
+  huggingface_file: "mistral-7b-instruct-v0.2.Q4_K_M.gguf"
+  
+  # Model parameters
+  gpu_layers: 35
+  context_window: 8192
+  vram_usage_gb: 4.5
+  
+  # Generation parameters
+  temperature: 0.7
+  top_p: 0.9
+  top_k: 40
+  max_tokens: 2048
+  
+  # Capabilities
+  capabilities:
+    - task_classification
+    - simple_questions
+    - agent_routing
+    - code_completion_simple
+    - context_summarization
+    - fallback
+
+# Specialist Model (Load on Demand)
+specialist_model:
+  name: "qwen2.5-coder-14b-instruct-q4_k_m.gguf"
+  display_name: "Qwen 2.5 Coder 14B Instruct (Q4)"
+  description: "Specialized coding model for complex development tasks"
+  
+  # Download info
+  huggingface_repo: "Qwen/Qwen2.5-Coder-14B-Instruct-GGUF"
+  huggingface_file: "qwen2.5-coder-14b-instruct-q4_k_m.gguf"
+  
+  # Model parameters
+  gpu_layers: 45
+  context_window: 16384
+  vram_usage_gb: 9.0
+  
+  # Generation parameters
+  temperature: 0.6
+  top_p: 0.95
+  top_k: 40
+  max_tokens: 4096
+  
+  # Capabilities
+  capabilities:
+    - complex_coding
+    - architecture_planning
+    - code_review
+    - debugging
+    - refactoring
+    - test_generation
+
+# Embedding Model
+embedding_model:
+  name: "all-MiniLM-L6-v2"
+  display_name: "all-MiniLM-L6-v2"
+  description: "Fast embedding model for semantic code search"
+  
+  # Download info
+  huggingface_repo: "sentence-transformers/all-MiniLM-L6-v2"
+  model_type: "sentence-transformers"
+  
+  # Model parameters
+  embedding_dimension: 384
+  max_sequence_length: 256
+  runs_on_cpu: true
+
+# Model Routing Rules
+routing:
+  # Task type -> Model to use
+  task_routing:
+    task_classification: base_model
+    simple_questions: base_model
+    agent_routing: base_model
+    code_completion_simple: base_model
+    context_summarization: base_model
+    fallback: base_model
+    
+    complex_coding: specialist_model
+    architecture_planning: specialist_model
+    code_review: specialist_model
+    debugging: specialist_model
+    refactoring: specialist_model
+    test_generation: specialist_model
+    
+  # Agent -> Preferred model
+  agent_routing:
+    planner: specialist_model
+    coder: specialist_model
+    researcher: base_model
+    tester: specialist_model
+    debugger: specialist_model
+    reviewer: specialist_model
+    refactor: specialist_model

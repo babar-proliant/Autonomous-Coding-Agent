@@ -1,0 +1,277 @@
+# ============================================
+# TOOLS CONFIGURATION
+# ============================================
+
+# File System Tools
+filesystem:
+  read_file:
+    enabled: true
+    risk_level: low
+    timeout_seconds: 10
+    requires_confirmation: false
+    
+  write_file:
+    enabled: true
+    risk_level: medium
+    timeout_seconds: 30
+    requires_confirmation: false
+    
+  edit_file:
+    enabled: true
+    risk_level: medium
+    timeout_seconds: 30
+    requires_confirmation: false
+    
+  delete_file:
+    enabled: true
+    risk_level: high
+    timeout_seconds: 10
+    requires_confirmation: true
+    
+  delete_directory:
+    enabled: true
+    risk_level: high
+    timeout_seconds: 30
+    requires_confirmation: true
+    
+  list_directory:
+    enabled: true
+    risk_level: low
+    timeout_seconds: 10
+    requires_confirmation: false
+    
+  create_directory:
+    enabled: true
+    risk_level: low
+    timeout_seconds: 10
+    requires_confirmation: false
+    
+  copy_file:
+    enabled: true
+    risk_level: low
+    timeout_seconds: 60
+    requires_confirmation: false
+    
+  move_file:
+    enabled: true
+    risk_level: medium
+    timeout_seconds: 30
+    requires_confirmation: false
+    
+  search_files:
+    enabled: true
+    risk_level: low
+    timeout_seconds: 60
+    requires_confirmation: false
+
+# Terminal Tools
+terminal:
+  execute_command:
+    enabled: true
+    risk_level: high
+    timeout_seconds: 300
+    requires_confirmation: false
+    safety_check: true
+    
+  start_process:
+    enabled: true
+    risk_level: high
+    timeout_seconds: 30
+    requires_confirmation: false
+    safety_check: true
+    
+  read_process_output:
+    enabled: true
+    risk_level: low
+    timeout_seconds: 10
+    requires_confirmation: false
+    
+  stop_process:
+    enabled: true
+    risk_level: medium
+    timeout_seconds: 10
+    requires_confirmation: false
+
+# Code Analysis Tools
+code:
+  search_code:
+    enabled: true
+    risk_level: low
+    timeout_seconds: 30
+    requires_confirmation: false
+    
+  find_symbol:
+    enabled: true
+    risk_level: low
+    timeout_seconds: 10
+    requires_confirmation: false
+    
+  find_references:
+    enabled: true
+    risk_level: low
+    timeout_seconds: 30
+    requires_confirmation: false
+    
+  grep_search:
+    enabled: true
+    risk_level: low
+    timeout_seconds: 60
+    requires_confirmation: false
+    
+  analyze_code:
+    enabled: true
+    risk_level: low
+    timeout_seconds: 30
+    requires_confirmation: false
+
+# Git Tools
+git:
+  git_status:
+    enabled: true
+    risk_level: low
+    timeout_seconds: 10
+    requires_confirmation: false
+    
+  git_diff:
+    enabled: true
+    risk_level: low
+    timeout_seconds: 30
+    requires_confirmation: false
+    
+  git_log:
+    enabled: true
+    risk_level: low
+    timeout_seconds: 10
+    requires_confirmation: false
+    
+  git_add:
+    enabled: true
+    risk_level: medium
+    timeout_seconds: 10
+    requires_confirmation: false
+    
+  git_commit:
+    enabled: true
+    risk_level: medium
+    timeout_seconds: 30
+    requires_confirmation: false
+    
+  git_branch:
+    enabled: true
+    risk_level: medium
+    timeout_seconds: 10
+    requires_confirmation: false
+    
+  git_checkout:
+    enabled: true
+    risk_level: medium
+    timeout_seconds: 30
+    requires_confirmation: false
+    
+  git_push:
+    enabled: true
+    risk_level: high
+    timeout_seconds: 60
+    requires_confirmation: true
+    
+  git_pull:
+    enabled: true
+    risk_level: medium
+    timeout_seconds: 60
+    requires_confirmation: false
+    
+  git_merge:
+    enabled: true
+    risk_level: high
+    timeout_seconds: 60
+    requires_confirmation: true
+    
+  git_reset:
+    enabled: true
+    risk_level: high
+    timeout_seconds: 10
+    requires_confirmation: true
+
+# Web Tools
+web:
+  web_search:
+    enabled: true
+    risk_level: low
+    timeout_seconds: 30
+    requires_confirmation: false
+    
+  fetch_url:
+    enabled: true
+    risk_level: low
+    timeout_seconds: 30
+    requires_confirmation: false
+
+# AI Tools
+ai:
+  generate_code:
+    enabled: true
+    risk_level: medium
+    timeout_seconds: 120
+    requires_confirmation: false
+    
+  explain_code:
+    enabled: true
+    risk_level: low
+    timeout_seconds: 60
+    requires_confirmation: false
+    
+  generate_tests:
+    enabled: true
+    risk_level: low
+    timeout_seconds: 120
+    requires_confirmation: false
+
+# Project Tools
+project:
+  create_checkpoint:
+    enabled: true
+    risk_level: low
+    timeout_seconds: 60
+    requires_confirmation: false
+    
+  rollback_checkpoint:
+    enabled: true
+    risk_level: high
+    timeout_seconds: 120
+    requires_confirmation: true
+    
+  list_checkpoints:
+    enabled: true
+    risk_level: low
+    timeout_seconds: 10
+    requires_confirmation: false
+
+# Tool Categories
+categories:
+  filesystem:
+    description: "File and directory operations"
+    color: "#4CAF50"
+    
+  terminal:
+    description: "Command execution and process management"
+    color: "#FF9800"
+    
+  code:
+    description: "Code analysis and navigation"
+    color: "#2196F3"
+    
+  git:
+    description: "Version control operations"
+    color: "#9C27B0"
+    
+  web:
+    description: "Web search and fetch operations"
+    color: "#00BCD4"
+    
+  ai:
+    description: "AI-assisted development tools"
+    color: "#E91E63"
+    
+  project:
+    description: "Project management tools"
+    color: "#607D8B"

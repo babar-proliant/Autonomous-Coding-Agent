@@ -1,0 +1,236 @@
+# ============================================
+# SAFETY CONFIGURATION
+# ============================================
+
+# Command Filtering
+command_filter:
+  enabled: true
+  mode: "blocklist"  # blocklist or allowlist
+  
+  # Commands that are completely blocked
+  blocked_commands:
+    # Filesystem destruction
+    - "rm -rf /"
+    - "rm -rf ~"
+    - "rm -rf *"
+    - "rm -rf /*"
+    - "mkfs"
+    - "dd if=/dev/zero"
+    - "dd if=/dev/urandom"
+    - "> /dev/sda"
+    - "> /dev/nvme"
+    
+    # System modification
+    - "apt-get remove"
+    - "apt-get purge"
+    - "yum remove"
+    - "pacman -R"
+    - "dnf remove"
+    - "brew uninstall"
+    - "systemctl stop"
+    - "systemctl disable"
+    - "shutdown"
+    - "reboot"
+    - "init 0"
+    - "init 6"
+    - "poweroff"
+    - "halt"
+    
+    # Network attacks
+    - "nmap -sS"
+    - "nmap -sT"
+    - "netcat -l"
+    - "nc -l"
+    - "iptables -F"
+    - "ufw disable"
+    - "tcpdump -i any"
+    
+    # Privilege escalation
+    - "chmod 777 /"
+    - "chmod 777 /*"
+    - "chmod -R 777 /"
+    - "chown root"
+    - "sudo su"
+    - "su root"
+    - "passwd"
+    - "useradd"
+    - "userdel"
+    - "usermod"
+    
+    # Process killing (dangerous)
+    - "kill -9 -1"
+    - "killall -9"
+    - "pkill -9"
+    
+    # Fork bombs
+    - ":(){ :|:& };:"
+    - ".(){ .|.& };."
+    
+  # Commands requiring confirmation (warn but allow)
+  warn_commands:
+    - "rm -rf"
+    - "git push --force"
+    - "git reset --hard"
+    - "docker system prune"
+    - "npm publish"
+    - "pip install --upgrade"
+    - "sudo"
+    
+  # Patterns to detect dangerous commands
+  dangerous_patterns:
+    - "rm\\s+-rf\\s+[^.]"  # rm -rf on non-hidden
+    - ">\\s*/dev/sd"       # Writing to disk devices
+    - ">\\s*/dev/nvme"     # Writing to NVMe devices
+    - "curl.*\\|.*sh"      # Piping curl to shell
+    - "wget.*\\|.*sh"      # Piping wget to shell
+    - "eval\\s+"           # eval usage
+    - "exec\\s+"           # exec usage
+
+# Path Protection
+path_guard:
+  enabled: true
+  
+  # Paths that cannot be accessed or modified
+  protected_paths:
+    - "/etc"
+    - "/sys"
+    - "/proc"
+    - "/dev"
+    - "/root"
+    - "/boot"
+    - "/lib"
+    - "/lib64"
+    - "/usr/bin"
+    - "/usr/sbin"
+    - "/bin"
+    - "/sbin"
+    - "/System"
+    - "/Library"
+    - "C:/Windows"
+    - "C:/Program Files"
+    - "C:/Program Files (x86)"
+    - "C:/Users/All Users"
+    
+  # Patterns for protected files
+  protected_patterns:
+    - "**/.env*"
+    - "**/id_rsa*"
+    - "**/id_ed25519*"
+    - "**/*.pem"
+    - "**/*.key"
+    - "**/credentials*"
+    - "**/secrets*"
+    - "**/.gitconfig"
+    - "**/.ssh/*"
+    
+  # Workspace boundary
+  # Agent can only operate within these directories
+  allowed_base_paths:
+    - "workspace"
+    - "workspaces/projects"
+    - "data"
+    - "/tmp"
+
+# Resource Limits
+resource_limits:
+  enabled: true
+  
+  # CPU limits
+  max_cpu_percent: 80.0
+  
+  # RAM limits
+  max_ram_percent: 75.0
+  
+  # GPU/VRAM limits
+  max_gpu_vram_gb: 14.0
+  
+  # Execution time limits
+  max_tool_execution_seconds: 300
+  max_task_execution_seconds: 3600
+  max_terminal_session_seconds: 7200
+  
+  # Output limits
+  max_command_output_bytes: 1048576  # 1MB
+  max_file_read_bytes: 10485760      # 10MB
+  max_file_write_bytes: 104857600    # 100MB
+  
+  # Process limits
+  max_child_processes: 10
+  max_open_files: 100
+
+# File Operation Safety
+file_safety:
+  # Maximum files per operation
+  max_files_per_operation: 1000
+  
+  # Maximum total size per operation
+  max_total_size_mb: 500
+  
+  # Require confirmation for these operations
+  confirmation_required:
+    - delete_file
+    - delete_directory
+    - move_file_outside_workspace
+    - copy_file_outside_workspace
+    - execute_shell_command
+    - modify_protected_file
+    
+  # Auto-backup before modification
+  auto_backup_extensions:
+    - ".py"
+    - ".js"
+    - ".ts"
+    - ".tsx"
+    - ".jsx"
+    - ".java"
+    - ".go"
+    - ".rs"
+    - ".c"
+    - ".cpp"
+    - ".h"
+
+# Network Safety
+network_safety:
+  enabled: true
+  
+  # Allowed domains for web operations
+  allowed_domains:
+    - "*.github.com"
+    - "*.gitlab.com"
+    - "*.bitbucket.org"
+    - "*.npmjs.com"
+    - "*.pypi.org"
+    - "*.stackoverflow.com"
+    - "*.stackexchange.com"
+    - "*.readthedocs.io"
+    - "*.python.org"
+    - "*.nodejs.org"
+    - "*.mozilla.org"
+    - "*.w3schools.com"
+    - "*.mdn.dev"
+    
+  # Blocked domains
+  blocked_domains:
+    - "*.malware.*"
+    - "*.phishing.*"
+    
+  # Maximum redirects
+  max_redirects: 5
+  
+  # Request timeout
+  request_timeout_seconds: 30
+
+# Recovery Settings
+recovery:
+  # Auto-save checkpoints
+  auto_checkpoint: true
+  checkpoint_interval_seconds: 300
+  
+  # Maximum checkpoints to keep
+  max_checkpoints: 20
+  
+  # Auto-recovery on crash
+  auto_recover: true
+  
+  # Rollback on failure threshold
+  failure_threshold_for_rollback: 3
