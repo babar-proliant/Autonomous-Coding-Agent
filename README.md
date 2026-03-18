@@ -158,7 +158,7 @@ autonomous-coding-agent/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/autonomous-coding-agent.git
+git clone https://github.com/babar-proliant/Autonomous-Coding-Agent.git
 cd autonomous-coding-agent
 ```
 
@@ -358,13 +358,16 @@ Agent: Let me analyze the authentication code to identify the issue...
 ## 🖥️ Screenshots
 
 ### Main Interface
-![Main Interface](./screenshots/main-interface.png)
+<img width="1918" height="915" alt="image" src="https://github.com/user-attachments/assets/e84c9c82-5313-41ab-bce0-c65e27361914" />
+
 
 ### Code Generation in Progress
-![Code Generation](./screenshots/code-generation.png)
+<img width="958" height="781" alt="Screenshot 2026-03-19 015641" src="https://github.com/user-attachments/assets/426175d0-fea4-4d35-a983-920ce2f22a42" />
+
 
 ### File Preview
-![File Preview](./screenshots/file-preview.png)
+<img width="713" height="783" alt="Screenshot 2026-03-19 015706" src="https://github.com/user-attachments/assets/525c85b2-bd92-425d-84d8-c662d878eb19" />
+
 
 ---
 
