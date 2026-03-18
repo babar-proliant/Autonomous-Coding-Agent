@@ -21,7 +21,8 @@
 
 Autonomous Coding Agent is a full-stack AI-powered software development assistant that can autonomously plan, write, test, and debug code. Describe what you want to build, and watch as the AI agent creates it from scratch with real-time streaming output.
 
-https://github.com/user-attachments/assets/demo-video.mp4
+<img width="1919" height="923" alt="Screenshot 2026-03-19 013211" src="https://github.com/user-attachments/assets/5b1f129f-a300-40f9-b8a6-b14a90d2be56" />
+
 
 ### Why This Project?
 
